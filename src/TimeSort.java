@@ -26,7 +26,7 @@ public class TimeSort
 		final double MSECperSEC = 1000;
 
 		// ADD A DECLARATION FOR THE VARIABLE quickSort500Ticks HERE
-
+		double quickSort500Ticks = trials * (3.32E-5) * MSECperSEC;
 
 		long createTicks = timeArrayCreation(size, trials, seed);
 
@@ -37,31 +37,34 @@ public class TimeSort
 			quickSortTicks = 0;
 		}
 		System.out.println("The time for basic quick sort was " + ((double)quickSortTicks)/trials/MSECperSEC + " seconds");
+		System.out.println("The time relative to basic quick sort is " + ((double)quickSortTicks)/quickSort500Ticks);
 		System.out.println();
-		
-		
+
+		SortArray.setQuickSortMinimumSize(50);
+
 		// Version 2
 		long ver2QuickSortTicks = timeVersion2QuickSort(size, trials, seed) - createTicks;
-        if(ver2QuickSortTicks < 0)
-        {
-            System.out.println("Warning: Array creation dominated");
-            ver2QuickSortTicks = 0;
-        }
-        System.out.println("The time for version 2 quick sort was " + ((double)ver2QuickSortTicks)/trials/MSECperSEC + " seconds");
-        System.out.println("The time relative to basic quick sort is " + ((double)ver2QuickSortTicks)/quickSortTicks);
-        
-        
-        // Version 3
-        long ver3QuickSortTicks = timeVersion3QuickSort(size, trials, seed) - createTicks;
-        if(ver3QuickSortTicks < 0)
-        {
-            System.out.println("Warning: Array creation dominated");
-            ver3QuickSortTicks = 0;
-        }
-        System.out.println("The time for version 3 quick sort was " + ((double)ver3QuickSortTicks)/trials/MSECperSEC + " seconds");
-        System.out.println("The time relative to basic quick sort is " + ((double)ver3QuickSortTicks)/quickSortTicks);
-		
-        
+		if(ver2QuickSortTicks < 0)
+		{
+			System.out.println("Warning: Array creation dominated");
+			ver2QuickSortTicks = 0;
+		}
+		System.out.println("The time for version 2 quick sort was " + ((double)ver2QuickSortTicks)/trials/MSECperSEC + " seconds");
+		System.out.println("The time relative to basic quick sort is " + ((double)ver2QuickSortTicks)/quickSort500Ticks);
+		System.out.println();
+
+
+		// Version 3
+		long ver3QuickSortTicks = timeVersion3QuickSort(size, trials, seed) - createTicks;
+		if(ver3QuickSortTicks < 0)
+		{
+			System.out.println("Warning: Array creation dominated");
+			ver3QuickSortTicks = 0;
+		}
+		System.out.println("The time for version 3 quick sort was " + ((double)ver3QuickSortTicks)/trials/MSECperSEC + " seconds");
+		System.out.println("The time relative to basic quick sort is " + ((double)ver3QuickSortTicks)/quickSort500Ticks);
+		System.out.println();
+
 		/*** IGNORE ***/
 		/*
 		for (int i = 10; i<=200; i += 10) {
@@ -77,28 +80,28 @@ public class TimeSort
 			System.out.println("The time relative to basic quick sort is " + ((double)ver2QuickSortTicks)/quickSortTicks);
 		}*/
 
-		/*
-            long insertSortTicks = timeInsertionSort(size, trials, seed) - createTicks;
-            if(insertSortTicks < 0)
-            {
-                System.out.println("Warning: Array creation dominated");
-                insertSortTicks = 0;
-            }
-            System.out.println("The time for insertion sort was " + ((double)insertSortTicks)/trials/MSECperSEC + " seconds");
-            System.out.println("The time relative to basic quick sort is " + ((double)insertSortTicks)/quickSortTicks);
-            System.out.println();
-		 */
 
-		/*
-            long mergeSortTicks = timeMergeSort(size, trials, seed) - createTicks;
-            if(mergeSortTicks < 0)
-            {
-                System.out.println("Warning: Array creation dominated");
-                mergeSortTicks = 0;
-            }
-            System.out.println("The time for merge sort was " + ((double)mergeSortTicks)/trials/MSECperSEC + " seconds");
-            System.out.println("The time relative to basic quick sort is " + ((double)mergeSortTicks)/quickSortTicks);
-		 */
+		long insertSortTicks = timeInsertionSort(size, trials, seed) - createTicks;
+		if(insertSortTicks < 0)
+		{
+			System.out.println("Warning: Array creation dominated");
+			insertSortTicks = 0;
+		}
+		System.out.println("The time for insertion sort was " + ((double)insertSortTicks)/trials/MSECperSEC + " seconds");
+		System.out.println("The time relative to basic quick sort is " + ((double)insertSortTicks)/quickSort500Ticks);
+		System.out.println();
+
+
+
+		long mergeSortTicks = timeMergeSort(size, trials, seed) - createTicks;
+		if(mergeSortTicks < 0)
+		{
+			System.out.println("Warning: Array creation dominated");
+			mergeSortTicks = 0;
+		}
+		System.out.println("The time for merge sort was " + ((double)mergeSortTicks)/trials/MSECperSEC + " seconds");
+		System.out.println("The time relative to basic quick sort is " + ((double)mergeSortTicks)/quickSort500Ticks);
+
 		// MAKE MODIFICATIONS HERE TO TIME THE DIFFERENT ALGORITHMS        
 
 
@@ -245,7 +248,7 @@ public class TimeSort
 
 		return diff;
 	}
-	
+
 	public static long timeVersion3QuickSort(int size, int trials, int seed)
 	{
 
